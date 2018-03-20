@@ -1,0 +1,67 @@
+<div class="container">
+  <h1>Add School Form</h1>
+  <form (ngSubmit)="onSubmit()" #addSchoolForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="school.name"
+             required maxlength="100" #name="ngModel">
+    </div>
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+      Name is required
+    </div>
+
+    <div class="form-group">
+      <label for="start-grade">Start Grade</label>
+      <input type="number" class="form-control" id="start-grade" name="startGrade" [(ngModel)]="school.startGrade"
+             required maxlength="2" #startGrade="ngModel">
+    </div>
+    <div [hidden]="startGrade.valid || startGrade.pristine" class="alert alert-danger">
+      Start Grade is required
+    </div>
+
+    <div class="form-group">
+      <label for="last-grade">Last Grade</label>
+      <input type="number" class="form-control" id="last-grade" name="lastGrade"
+             [(ngModel)]="school.lastGrade" required maxlength="2" #lastGrade="ngModel">
+    </div>
+    <div [hidden]="lastGrade.valid || lastGrade.pristine" class="alert alert-danger">
+      Last Grade is required
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!addSchoolForm.form.valid">Submit</button>
+
+    <button type="button" class="btn btn-default" (click)="addSchoolForm.reset()">Reset</button>
+
+    <button type="button" class="btn" (click)="goBack()">Go Back</button>
+
+  </form>
+
+  <div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+      <div class="col-xs-3">Name</div>
+      <div class="col-xs-9  pull-left">{{ school.name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Start Grade</div>
+      <div class="col-xs-9 pull-left">{{ school.startGrade }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Last Grade</div>
+      <div class="col-xs-9 pull-left">{{ school.lastGrade }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+    <button class="btn btn-primary" (click)="submitted=true; onSubmit(); addSchoolForm.reset()">Final Submit</button>
+  </div>
+
+  <div *ngIf="success==1">
+    <br><span class="text-success">You have successfully added the school</span>
+    <button class="btn btn-primary" (click)="onMsgConfirm()">Ok</button>
+    <button class="btn btn-primary" (click)="success=0">Add Another</button>
+  </div>
+
+  <div *ngIf="success==2">
+    <br><span class="text-danger">There was error adding the school</span>
+  </div>
+</div>

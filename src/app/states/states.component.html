@@ -1,0 +1,8 @@
+<div>
+  <p-autoComplete [(ngModel)]="state" [suggestions]="filteredStates"
+                  (completeMethod)="filterStates($event)" [dropdown]="true" field="name"
+                  (onSelect)="onSelectState($event)" placeholder="States">
+  </p-autoComplete>
+  <a routerLink="/state/add">ADD STATE</a>
+  <app-districts [state]="state"></app-districts>
+</div>

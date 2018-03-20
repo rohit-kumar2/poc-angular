@@ -1,0 +1,7 @@
+<div *ngIf="district">
+  <p-autoComplete [(ngModel)]="school" [suggestions]="filteredSchools"
+                  (completeMethod)="filterSchools($event)" [dropdown]="true" field="name"
+                  (onSelect)="onSelectSchool($event)" placeholder="Schools">
+  </p-autoComplete>
+  <a [routerLink]="state.id + districtUrl + '/' + district.id + addSchoolUrl">ADD SCHOOL</a>
+</div>
